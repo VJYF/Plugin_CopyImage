@@ -1,0 +1,36 @@
+.load{
+    display:flex;
+    justify-content:center;
+    position:relative;
+}
+
+.loadmore{
+    height:64px;
+    width:64px;
+    background-image: url(src/plus64px.png);
+    border: 0px;
+    background-color: unset;
+    position: absolute;
+}
+
+@keyframes turn {  
+    45% {
+      transform: rotate(-0.8turn);
+    }
+    50% {
+        transform: rotate(-0.70turn);
+    }
+    65% {
+        transform: rotate(-0.8turn);
+    }
+    70% {
+        transform: rotate(-0.70turn);
+    }
+    85% {
+        transform: rotate(-0.8turn);
+    }
+  }
+
+.load:hover .loadmore{
+    animation: turn 3s;
+}
