@@ -24,10 +24,11 @@ echo"---------------------------------------";
 echo "<br>";
 echo"Truncate Table :";
 echo "<br>";
+echo "<br>";
 
 /////////////////////
 //LOCALHOST DB USER//
-$db_host = "localhost";
+$db_host = "127.0.0.1";
 $db_name = "demo_serimeca";
 $db_username = "root";
 $db_password = "";
@@ -80,114 +81,151 @@ $last_col = array_key_last($nb_col);
 
 //////////////////////////////////////////////////
 //GET COUNT OF ROW IN ps_cdesigner_cfields TABLE//
-$query = 'SELECT COUNT(id_product) as id FROM ps_cdesigner_cfields';
-$results = $mysqli->query($query);
-$ligne = mysqli_fetch_assoc($results);
-echo"<br>";
-echo"ps_cdesigner_cfields : ";
-print_r($ligne['id']);
-echo " ligne(s)<br>";
-//////////////////////////////////////////////////
-
-if ($ligne['id'] > 0){
-    
-    echo"<br>";
-    echo"<form action='' method='post'><input value='clear cdesigner_cfields' type='submit' id='cdesigner_cfields' name='cdesigner_cfields'> </input></form>";
-    
-    ///////////////////////////////////////////////////
-    //IF BUTTON PRESSED TRUNCATE ps_cdesigner_cfields//
-    if(!empty($_POST['cdesigner_cfields'])){
-        $query = 'TRUNCATE TABLE ps_cdesigner_cfields';
-        $mysqli->query($query);
-        header("refresh: 1");
+$table = 'ps_cdesigner_cfields';
+if ($result = $mysqli->query("SHOW TABLES LIKE '".$table."'")) {
+    if($result->num_rows == 1) {
+        $query = 'SELECT COUNT(id_product) as id FROM ps_cdesigner_cfields';
+        $results = $mysqli->query($query);
+        $ligne = mysqli_fetch_assoc($results);
+        echo"<br>";
+        echo"ps_cdesigner_cfields : ";
+        print_r($ligne['id']);
+        echo " ligne(s)<br>";
+        //////////////////////////////////////////////////
         
-    }
-    ///////////////////////////////////////////////////
+        if ($ligne['id'] > 0){
+            
+            echo"<br>";
+            echo"<form action='' method='post'><input value='clear cdesigner_cfields' type='submit' id='cdesigner_cfields' name='cdesigner_cfields'> </input></form>";
+            
+            ///////////////////////////////////////////////////
+            //IF BUTTON PRESSED TRUNCATE ps_cdesigner_cfields//
+            if(!empty($_POST['cdesigner_cfields'])){
+                $query = 'TRUNCATE TABLE ps_cdesigner_cfields';
+                $mysqli->query($query);
+                header("refresh: 1");
+                
+            }
+            ///////////////////////////////////////////////////
+        
+        }
+    }else{
+        echo '<br>';
+        echo "ps_cdesigner_cfields : Table does not exist";
+        echo '<br>';
 
+    }
 }
 
 ///////////////////////////////////////////////////
 //GET COUNT OF ROW IN ps_product_customized TABLE//
-$query = 'SELECT COUNT(id_product) as id FROM ps_product_customized';
-$results = $mysqli->query($query);
-$ligne = mysqli_fetch_assoc($results);
-echo"<br>";
-echo"ps_product_customized : ";
-print_r($ligne['id']);
-echo " ligne(s)<br>";
-///////////////////////////////////////////////////
+$table = 'ps_product_customized';
+if ($result = $mysqli->query("SHOW TABLES LIKE '".$table."'")) {
+    if($result->num_rows == 1) {
+        $query = 'SELECT COUNT(id_product) as id FROM ps_product_customized';
+        $results = $mysqli->query($query);
+        $ligne = mysqli_fetch_assoc($results);
+        echo"<br>";
+        echo"ps_product_customized : ";
+        print_r($ligne['id']);
+        echo " ligne(s)<br>";
+        ///////////////////////////////////////////////////
+        
+        if ($ligne['id'] > 0){
+            
+            echo"<br>";
+            echo"<form action='' method='post'><input value='clear product_customized' type='submit' id='product_customized' name='product_customized'> </input></form>";
+            
+            ////////////////////////////////////////////////////
+            //IF BUTTON PRESSED TRUNCATE ps_product_customized//
+            if(!empty($_POST['product_customized'])){
+                $query = 'TRUNCATE TABLE ps_product_customized';
+                $mysqli->query($query);
+                header("refresh: 1");
+            }
+            ////////////////////////////////////////////////////
+        
+        }
+    }else{
+        echo '<br>';
+        echo "ps_product_customized : Table does not exist";
+        echo '<br>';
 
-if ($ligne['id'] > 0){
-    
-    echo"<br>";
-    echo"<form action='' method='post'><input value='clear product_customized' type='submit' id='product_customized' name='product_customized'> </input></form>";
-    
-    ////////////////////////////////////////////////////
-    //IF BUTTON PRESSED TRUNCATE ps_product_customized//
-    if(!empty($_POST['product_customized'])){
-        $query = 'TRUNCATE TABLE ps_product_customized';
-        $mysqli->query($query);
-        header("refresh: 1");
     }
-    ////////////////////////////////////////////////////
-
 }
 
 ////////////////////////////////////////////////////////////
 //GET COUNT OF ROW IN ps_product_customized_settings TABLE//
-$query = 'SELECT COUNT(id_product) as id FROM ps_product_customized_settings';
-$results = $mysqli->query($query);
-$ligne = mysqli_fetch_assoc($results);
-echo"<br>";
-echo"ps_product_customized_settings : ";
-print_r($ligne['id']);
-echo " ligne(s)<br>";
-////////////////////////////////////////////////////////////
-
-if ($ligne['id'] > 0){
-    
-    echo"<br>";
-    echo"<form action='' method='post'><input value='clear ps_product_customized_settings' type='submit' id='ps_product_customized_settings' name='ps_product_customized_settings'> </input></form><br>";
-    
-    /////////////////////////////////////////////////////////////
-    //IF BUTTON PRESSED TRUNCATE ps_product_customized_settings//
-    if(!empty($_POST['ps_product_customized_settings'])){
+$table = 'ps_product_customized_settings';
+if ($result = $mysqli->query("SHOW TABLES LIKE '".$table."'")) {
+    if($result->num_rows == 1) {
+        $query = 'SELECT COUNT(id_product) as id FROM ps_product_customized_settings';
+        $results = $mysqli->query($query);
+        $ligne = mysqli_fetch_assoc($results);
+        echo"<br>";
+        echo"ps_product_customized_settings : ";
+        print_r($ligne['id']);
+        echo " ligne(s)<br>";
+        ////////////////////////////////////////////////////////////
         
-        $query = 'TRUNCATE TABLE ps_product_customized_settings';
-        $mysqli->query($query);
-        header("refresh: 1");
+        if ($ligne['id'] > 0){
+            
+            echo"<br>";
+            echo"<form action='' method='post'><input value='clear ps_product_customized_settings' type='submit' id='ps_product_customized_settings' name='ps_product_customized_settings'> </input></form><br>";
+            
+            /////////////////////////////////////////////////////////////
+            //IF BUTTON PRESSED TRUNCATE ps_product_customized_settings//
+            if(!empty($_POST['ps_product_customized_settings'])){
+                
+                $query = 'TRUNCATE TABLE ps_product_customized_settings';
+                $mysqli->query($query);
+                header("refresh: 1");
+            }
+            /////////////////////////////////////////////////////////////
+        
+        }
+    }else {
+        echo "ps_product_customized_settings : Table does not exist";
     }
-    /////////////////////////////////////////////////////////////
-
 }
+
 
 ////////////////////////////////////////////////////
 //GET COUNT OF ROW IN ps_customization_field TABLE//
-$query = 'SELECT COUNT(id_product) as id FROM ps_customization_field';
-$results = $mysqli->query($query);
-$ligne = mysqli_fetch_assoc($results);
-echo"<br>";
-echo"ps_customization_field : ";
-print_r($ligne['id']);
-echo " ligne(s)<br>";
-////////////////////////////////////////////////////
+$table = 'ps_customization_field';
+if ($result = $mysqli->query("SHOW TABLES LIKE '".$table."'")) {
+    if($result->num_rows == 1) {
 
-if ($ligne['id'] > 0){
-    
-    echo"<br>";
-    echo"<form action='' method='post'><input value='clear customization_field' type='submit' id='customization_field' name='customization_field'> </input></form>";
-
-    /////////////////////////////////////////////////////
-    //IF BUTTON PRESSED TRUNCATE ps_customization_field//
-    if(!empty($_POST['customization_field'])){
+        $query = 'SELECT COUNT(id_product) as id FROM ps_customization_field';
+        $results = $mysqli->query($query);
+        $ligne = mysqli_fetch_assoc($results);
+        echo"<br>";
+        echo"ps_customization_field : ";
+        print_r($ligne['id']);
+        echo " ligne(s)<br>";
+        ////////////////////////////////////////////////////
         
-        $query = 'TRUNCATE TABLE ps_customization_field';
-        $mysqli->query($query);
-        header("refresh: 1");
+        if ($ligne['id'] > 0){
+            
+            echo"<br>";
+            echo"<form action='' method='post'><input value='clear customization_field' type='submit' id='customization_field' name='customization_field'> </input></form>";
+        
+            /////////////////////////////////////////////////////
+            //IF BUTTON PRESSED TRUNCATE ps_customization_field//
+            if(!empty($_POST['customization_field'])){
+                
+                $query = 'TRUNCATE TABLE ps_customization_field';
+                $mysqli->query($query);
+                header("refresh: 1");
+            }
+            /////////////////////////////////////////////////////
+        
+        }
+    }else {
+        echo "ps_customization_field : Table does not exist";
     }
-    /////////////////////////////////////////////////////
-
 }
+
 
 
 echo '<br>';
@@ -247,7 +285,7 @@ if($data[0][1] == "SKU"){
             //STORE id_product ON A VAR//
             $id_product = $results['id_product'];
             /////////////////////////////////////////////////
-
+            
             /////////////////////////////
             //WRITE QUERY INTO LOG FILE//
             if(isset($id_product)){
